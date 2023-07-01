@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="411dp"
+        android:layout_height="322dp"
+        android:background="@color/black"
+        android:padding="5dp"
+        app:srcCompat="@drawable/baseline_add_road_24"
+        app:strokeColor="@color/white"
+        app:strokeWidth="5dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@drawable/baseline_camera_alt_24"
+        android:contentDescription="TODO" />
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="354dp"
+        android:layout_height="56dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/search_view"
+        android:backgroundTint="@color/white"
+        android:hint="   Description of Pothole"
+        android:textColor="@color/black"
+        android:textColorHint="#8A8A8A"
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Add your views here -->
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="338dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/txt_location"
+            android:layout_width="293dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_view"
+            android:backgroundTint="@color/white"
+            android:hint="  Get current location "
+            android:textColor="@color/black"
+            android:textColorHint="#8A8A8A"></EditText>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/button_GetLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:text="Send" />
+</LinearLayout>
+
+
+
+
+
