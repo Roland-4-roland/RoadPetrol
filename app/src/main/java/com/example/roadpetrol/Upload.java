@@ -8,11 +8,12 @@ public class Upload {
     private String Address;
     private static String DocID;
     private String CurrentuserID;
+    private String datetime;
     public  Upload(){
 
     }
 
-    public Upload(String desc, String latitude, String longitude, String image, String docID, String currentuserID,String address) {
+    public Upload(String desc, String latitude, String longitude, String image, String docID, String currentuserID, String address, String datetime) {
         Desc = desc;
         Latitude = latitude;
         Longitude = longitude;
@@ -20,6 +21,7 @@ public class Upload {
         DocID = docID;
         CurrentuserID = currentuserID;
         Address=address;
+        this.datetime = datetime;
     }
 
     public String getDesc() {
@@ -73,6 +75,15 @@ public class Upload {
     public String getAddress() {return Address;}
 
     public void setAddress(String address) {Address = address;}
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
 }
 
 

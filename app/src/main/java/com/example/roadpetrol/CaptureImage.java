@@ -58,6 +58,7 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -81,6 +82,7 @@ public class CaptureImage extends AppCompatActivity implements LocationListener 
 
     LocationManager locationManager;
     String Latitude,Longitude,address;
+    String datetime;
     ImageView imageView;
     FloatingActionButton button;
     TextView latlong_location;
@@ -130,6 +132,8 @@ public class CaptureImage extends AppCompatActivity implements LocationListener 
                 // Send the email
                 sendEmail(subject, message);
                 UploadImage();
+                Intent it=new Intent(CaptureImage.this,MainActivity.class);
+                startActivity(it);
             }
         });
 
@@ -155,6 +159,7 @@ public class CaptureImage extends AppCompatActivity implements LocationListener 
                                 Manifest.permission.ACCESS_FINE_LOCATION
                         },100);
                     }
+                    getDateTime();
                     getLocation();
                 }
             }
@@ -163,6 +168,18 @@ public class CaptureImage extends AppCompatActivity implements LocationListener 
     private void sendEmail(String subject, String message) {
         SendEmailTask sendEmailTask = new SendEmailTask(subject, message);
         sendEmailTask.execute();
+    }
+
+    public void getDateTime(){
+        Calendar calendar = Calendar.getInstance();
+        String year = Integer.toString(calendar.get(Calendar.YEAR));
+        String month = Integer.toString(calendar.get(Calendar.MONTH) + 1);
+        String day = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH));
+        String hour = Integer.toString(calendar.get(Calendar.HOUR_OF_DAY));
+        String minute =Integer.toString( calendar.get(Calendar.MINUTE));
+        String second = Integer.toString(calendar.get(Calendar.SECOND));
+        datetime=hour+':'+minute+':'+second+" "+day+'/'+month+'/'+year;
+
     }
 
     private class SendEmailTask extends AsyncTask<Void, Void, Boolean> {
@@ -294,7 +311,7 @@ public class CaptureImage extends AppCompatActivity implements LocationListener 
         }
         else{
             DocumentReference documentReference=firestore.collection("uploads").document();
-            Upload upload=new Upload(desc,Latitude,Longitude,photoURL,"",CurrentUserId,address);
+            Upload upload=new Upload(desc,Latitude,Longitude,photoURL,"",CurrentUserId,address,datetime);
             documentReference.set(upload, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {

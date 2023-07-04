@@ -49,6 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Model user=userArrayList.get(position);
         holder.txtdisc.setText(user.desc);
         holder.txtlocation.setText(user.address);
+        holder.datetime.setText(user.datetime);
         holder.itemView.setBackgroundColor(Color.WHITE);
         Glide.with(holder.displayimage.getContext()).load(user.getImage()).into(holder.displayimage);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +62,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 intent.putExtra("longitude",user.longitude);
                 intent.putExtra("currentuserID",user.currentuserID);
                 intent.putExtra("docID",user.docID);
+                intent.putExtra("datetime",user.datetime);
+                intent.putExtra("description",user.getDesc());
                 view.getContext().startActivity(intent);
             }
         });
@@ -71,7 +74,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return userArrayList.size();
     }
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView txtlocation,txtdisc;
+        public TextView txtlocation,txtdisc,datetime;
         ImageView displayimage;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -79,6 +82,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             txtdisc=itemView.findViewById(R.id.txt_desc);
             displayimage=itemView.findViewById(R.id.display_image);
             txtlocation=itemView.findViewById(R.id.txt_location);
+            datetime=itemView.findViewById(R.id.txt_datetime);
 
         }
     }

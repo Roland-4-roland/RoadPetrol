@@ -8,11 +8,13 @@ public class Model {
     String image;
     String docID;
     String currentuserID;
+
+    String datetime;
     public Model(){
 
     }
 
-    public Model(String desc, String latitude, String longitude, String image,String address,String docId ,String currentuserID) {
+    public Model(String desc, String latitude, String longitude, String image,String address,String docId ,String currentuserID, String datetime) {
         this.desc = desc;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -20,6 +22,7 @@ public class Model {
         this.address=address;
         this.currentuserID=currentuserID;
         this.docID=docId;
+        this.datetime=datetime;
     }
     public String getDocID() {
         return docID;
@@ -76,6 +79,16 @@ public class Model {
     public String getAddress() {
         return address;
     }
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
+
 }
 
 

@@ -22,7 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class displayDetails extends AppCompatActivity {
-    TextView Address;
+    TextView Address,datetime,description;
     Button mapslink,deletebutton;
     String link;
     ImageView Image;
@@ -36,8 +36,12 @@ public class displayDetails extends AppCompatActivity {
         Address=findViewById(R.id.address);
         deletebutton=findViewById(R.id.delete_button);
         Image=findViewById(R.id.image);
+        datetime=findViewById(R.id.txt_datetime);
         mapslink=findViewById(R.id.maps_link);
+        description=findViewById(R.id.txt_desc);
         Intent intent = getIntent();
+        String Description=intent.getStringExtra("description");
+        String DateTime=intent.getStringExtra("datetime");
         String add_str = intent.getStringExtra("address");
         String image_str=intent.getStringExtra("image");
         String lat_str=intent.getStringExtra("latitude");
@@ -45,7 +49,10 @@ public class displayDetails extends AppCompatActivity {
         String document_id=intent.getStringExtra("docID");
         String uploaded_user_id=intent.getStringExtra("currentuserID");
         String currentuserId=currentUser.getUid();
-        Address.setText(add_str);
+        String email=currentUser.getEmail();
+        description.setText("Description: "+Description);
+        Address.setText("Address: "+add_str);
+        datetime.setText(DateTime);
         link="https://maps.google.com/?q="+lat_str+','+long_str;
         Glide.with(this).load(image_str).into(Image);
         mapslink.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +65,7 @@ public class displayDetails extends AppCompatActivity {
         deletebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(currentuserId.equals(uploaded_user_id)) {
+                if(currentuserId.equals(uploaded_user_id) || (email.equals("admin@gmail.com"))) {
                     DocumentReference documentReference = db.collection("uploads").document(document_id);
                     documentReference.delete()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
